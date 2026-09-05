@@ -77,6 +77,7 @@ export function EventDetailsModal() {
           <Input
             label="Date"
             type="date"
+            placeholder="Select date"
             value={eventDate}
             onChange={(event) => setEventDate(event.target.value)}
             required
