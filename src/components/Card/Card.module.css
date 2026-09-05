@@ -1,0 +1,76 @@
+.card {
+  border: 1px solid var(--color-border-soft);
+  background: var(--color-ivory-soft);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition-med), transform var(--transition-med);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+.image {
+  height: 380px;
+  background: var(--color-surface-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform var(--transition-med);
+}
+
+.card:hover .photo {
+  transform: scale(1.03);
+}
+
+.info {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-ivory-soft);
+}
+
+.category {
+  color: var(--color-gold-deep);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.name {
+  font-family: var(--font-display);
+  color: var(--color-text-soft);
+  font-size: 15px;
+}
+
+.price {
+  text-align: right;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.actions {
+  padding: 0 var(--space-4) var(--space-4);
+  background: var(--color-ivory-soft);
+}
+
+.rental {
+  color: var(--color-muted-soft);
+  font-family: var(--font-body);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  margin-top: 7px;
+}

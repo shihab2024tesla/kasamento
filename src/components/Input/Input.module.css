@@ -1,0 +1,77 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  height: 46px;
+  padding: 0 var(--space-4);
+  background: #ffffff;
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-ink);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--color-muted-soft);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(183, 149, 87, 0.14);
+}
+
+.input.hasAdornment {
+  padding-right: 46px;
+}
+
+.input.hasError {
+  border-color: var(--color-maroon);
+}
+
+.input.hasError:focus {
+  box-shadow: 0 0 0 3px rgba(107, 30, 46, 0.12);
+}
+
+.adornment {
+  position: absolute;
+  right: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  border-radius: var(--radius-sm);
+}
+
+.adornment:hover {
+  color: var(--color-ink);
+}
+
+.errorText {
+  font-size: 11.5px;
+  color: var(--color-maroon);
+  line-height: 1.5;
+}
