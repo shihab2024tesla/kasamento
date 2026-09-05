@@ -74,6 +74,30 @@
   background: var(--color-surface-warm);
 }
 
+.datePlaceholder {
+  display: none;
+  position: absolute;
+  left: var(--space-4);
+  color: var(--color-muted-soft);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Touchscreens render an empty type="date" field fully blank (no dd/mm/yyyy
+   hint the way desktop does), so swap in our own placeholder text there.
+   Scoped to coarse pointers only, since hiding the native text would also
+   hide live keystrokes while typing a date on desktop. */
+@media (pointer: coarse) {
+  .input[type="date"].dateEmpty,
+  .input[type="date"].dateEmpty:invalid {
+    color: transparent;
+  }
+
+  .datePlaceholder {
+    display: block;
+  }
+}
+
 .adornment {
   position: absolute;
   right: var(--space-2);
