@@ -1,9 +1,11 @@
 import { BrowserRouter } from "react-router-dom";
 import { BagDrawer } from "./components/Bag";
 import { ChatWidget } from "./components/Chat";
+import { MyPhotoModal } from "./components/MyPhoto";
 import { ToastViewport } from "./components/Toast";
 import { AuthProvider } from "./context/AuthContext";
 import { BagProvider } from "./context/BagContext";
+import { PhotoProvider } from "./context/PhotoContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { ToastProvider } from "./context/ToastContext";
 import { AppRoutes } from "./routes/AppRoutes";
@@ -15,10 +17,13 @@ export function App() {
         <ToastProvider>
           <AuthProvider>
             <BagProvider>
-              <AppRoutes />
-              <BagDrawer />
-              <ToastViewport />
-              <ChatWidget />
+              <PhotoProvider>
+                <AppRoutes />
+                <BagDrawer />
+                <MyPhotoModal />
+                <ToastViewport />
+                <ChatWidget />
+              </PhotoProvider>
             </BagProvider>
           </AuthProvider>
         </ToastProvider>
