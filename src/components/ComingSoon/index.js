@@ -1,0 +1,1 @@
+export { ComingSoonNotice } from "./ComingSoonNotice";

@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { ProductCard } from "../../components/Card";
+import { ComingSoonNotice } from "../../components/ComingSoon";
 import { EventDetailsModal } from "../../components/EventDetails";
-import { BagIcon, MoonIcon, SunIcon } from "../../components/icons";
+import { BagIcon, CameraIcon, MoonIcon, SunIcon } from "../../components/icons";
 import { Navbar } from "../../components/Navbar";
 import { Reveal } from "../../components/Reveal";
+import { TryOnModal } from "../../components/TryOn";
 import { useAuth } from "../../hooks/useAuth";
 import { useBag } from "../../hooks/useBag";
+import { usePhoto } from "../../hooks/usePhoto";
 import { useTheme } from "../../hooks/useTheme";
 import { useToast } from "../../hooks/useToast";
 import { formatINR } from "../../utils/currency";
@@ -162,7 +165,7 @@ function filterItems(items, religionFilter, priceFilter) {
   );
 }
 
-function CollectionSection({ id, eyebrow, title, items, onAddToBag, cardVariant = "zoom" }) {
+function CollectionSection({ id, eyebrow, title, items, onAddToBag, onPreview, hasPhoto, cardVariant = "zoom" }) {
   return (
     <section className={styles.curated} id={id}>
       <Reveal variant="up">
@@ -182,6 +185,8 @@ function CollectionSection({ id, eyebrow, title, items, onAddToBag, cardVariant 
                 image={item.image}
                 imageAlt={item.imageAlt}
                 onAddToBag={() => onAddToBag(item)}
+                onPreview={() => onPreview(item)}
+                hasPhoto={hasPhoto}
               />
             </Reveal>
           ))}
@@ -250,11 +255,20 @@ export function Home() {
   const { user, logout } = useAuth();
   const { totalCount, addItem, openBag } = useBag();
   const { theme, toggleTheme } = useTheme();
+  const { photo, openUpload } = usePhoto();
   const { showToast } = useToast();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
   const [religionFilter, setReligionFilter] = useState("All");
   const [priceFilter, setPriceFilter] = useState("all");
+  const [previewItem, setPreviewItem] = useState(null);
+  const [comingSoon, setComingSoon] = useState(false);
+
+  useEffect(() => {
+    if (!comingSoon) return;
+    const timer = setTimeout(() => setComingSoon(false), 3000);
+    return () => clearTimeout(timer);
+  }, [comingSoon]);
 
   const filteredBride = filterItems(BRIDE_COLLECTION, religionFilter, priceFilter);
   const filteredGroom = filterItems(GROOM_COLLECTION, religionFilter, priceFilter);
@@ -274,6 +288,20 @@ export function Home() {
     addItem(item);
   }
 
+  function handlePreview(item) {
+    if (!photo) {
+      showToast("Add your photo first, then tap Preview on Me again.", "info");
+      openUpload();
+      return;
+    }
+    setPreviewItem(item);
+  }
+
+  function handleGenerate() {
+    setPreviewItem(null);
+    setComingSoon(true);
+  }
+
   return (
     <div className="page-transition">
       <EventDetailsModal />
@@ -287,6 +315,14 @@ export function Home() {
             <button type="button" className={styles.bagButton} onClick={openBag} aria-label="Open bag">
               <BagIcon />
               {totalCount > 0 && <span className={styles.bagCount}>{totalCount}</span>}
+            </button>
+            <button
+              type="button"
+              className={styles.themeButton}
+              onClick={openUpload}
+              aria-label={photo ? "Change your photo" : "Add your photo"}
+            >
+              <CameraIcon />
             </button>
             <button
               type="button"
@@ -335,6 +371,8 @@ export function Home() {
                 image={item.image}
                 imageAlt={item.imageAlt}
                 onAddToBag={() => handleAddToBag(item)}
+                onPreview={() => handlePreview(item)}
+                hasPhoto={Boolean(photo)}
               />
             </Reveal>
           ))}
@@ -356,6 +394,8 @@ export function Home() {
         title="Curated for every ceremony"
         items={filteredBride}
         onAddToBag={handleAddToBag}
+        onPreview={handlePreview}
+        hasPhoto={Boolean(photo)}
       />
 
       <CollectionSection
@@ -364,8 +404,18 @@ export function Home() {
         title="Sherwanis, mundus & suits"
         items={filteredGroom}
         onAddToBag={handleAddToBag}
+        onPreview={handlePreview}
+        hasPhoto={Boolean(photo)}
         cardVariant="zoomOut"
       />
+
+      <TryOnModal
+        item={previewItem}
+        photo={photo}
+        onClose={() => setPreviewItem(null)}
+        onGenerate={handleGenerate}
+      />
+      <ComingSoonNotice show={comingSoon} />
     </div>
   );
 }
