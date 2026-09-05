@@ -6,6 +6,8 @@
   --color-ivory-soft: #fafafa;
   --color-ink: #171719;
   --color-ink-soft: #3f3d3c;
+  /* Stays near-black in both themes — for chips/bubbles paired with white text */
+  --color-ink-fixed: #171719;
 
   /* Gold — primary accent (bridal) */
   --color-gold: #b79557;
@@ -34,6 +36,9 @@
   --color-dark: #202020;
   --color-dark-strong: #1c1c1c;
 
+  /* Nav bar surface (kept separate so it can carry transparency per-theme) */
+  --color-nav-bg: rgba(248, 247, 245, 0.96);
+
   /* Semantic */
   --color-success: var(--color-green);
   --color-error: var(--color-maroon);
@@ -61,4 +66,29 @@
 
   --transition-fast: 160ms ease;
   --transition-med: 280ms ease;
+}
+
+:root[data-theme="dark"] {
+  --color-ivory: #17161a;
+  --color-ivory-soft: #1e1d22;
+  --color-ink: #f2f0ec;
+  --color-ink-soft: #d8d5d0;
+
+  --color-border: #34333a;
+  --color-border-soft: #302f36;
+  --color-border-faint: #3a3940;
+  --color-muted: #9a9aa4;
+  --color-muted-soft: #8d8d97;
+  --color-muted-nav: #85838d;
+  --color-text-soft: #c7c4c0;
+
+  --color-surface-warm: #232228;
+  --color-surface-cool: #202028;
+  --color-dark: #0f0e11;
+  --color-dark-strong: #0a0a0c;
+
+  --color-nav-bg: rgba(23, 22, 26, 0.9);
+
+  --shadow-soft: 0 5px 7px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.45);
 }

@@ -7,7 +7,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(248, 247, 245, 0.96);
+  background: var(--color-nav-bg);
   backdrop-filter: blur(6px);
 }
 
