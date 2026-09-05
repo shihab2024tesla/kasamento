@@ -1,0 +1,64 @@
+/* Design tokens extracted from the original Kasamento mockup (design-reference/original-mockup.html).
+   All new components should consume these variables rather than hardcoding colors. */
+:root {
+  /* Core palette */
+  --color-ivory: #f8f7f5;
+  --color-ivory-soft: #fafafa;
+  --color-ink: #171719;
+  --color-ink-soft: #3f3d3c;
+
+  /* Gold — primary accent (bridal) */
+  --color-gold: #b79557;
+  --color-gold-light: #c09b61;
+  --color-gold-lighter: #c29d60;
+  --color-gold-deep: #b28c57;
+
+  /* Kerala accents — used sparingly for cultural warmth (badges, dividers, groom-side details) */
+  --color-maroon: #6b1e2e;
+  --color-maroon-soft: #8a3245;
+  --color-green: #56634f;
+  --color-green-soft: #71816a;
+
+  /* Neutrals */
+  --color-border: #dedddd;
+  --color-border-soft: #dedde0;
+  --color-border-faint: #d3d1cf;
+  --color-muted: #8b94a0;
+  --color-muted-soft: #9a9ba0;
+  --color-muted-nav: #99959b;
+  --color-text-soft: #55565c;
+
+  /* Surfaces */
+  --color-surface-warm: #eeeae6;
+  --color-surface-cool: #e7eaf2;
+  --color-dark: #202020;
+  --color-dark-strong: #1c1c1c;
+
+  /* Semantic */
+  --color-success: var(--color-green);
+  --color-error: var(--color-maroon);
+  --color-focus: var(--color-gold);
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 14px;
+  --space-4: 20px;
+  --space-5: 28px;
+  --space-6: 38px;
+  --space-7: 56px;
+  --space-8: 74px;
+
+  /* Radii + shadows kept subtle, consistent with the mockup's squared-off premium look */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --shadow-soft: 0 5px 7px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 10px 30px rgba(23, 23, 25, 0.06);
+
+  --transition-fast: 160ms ease;
+  --transition-med: 280ms ease;
+}
