@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { ProductCard } from "../../components/Card";
+import { EventDetailsModal } from "../../components/EventDetails";
 import { BagIcon, MoonIcon, SunIcon } from "../../components/icons";
 import { Navbar } from "../../components/Navbar";
 import { Reveal } from "../../components/Reveal";
@@ -275,6 +276,7 @@ export function Home() {
 
   return (
     <div className="page-transition">
+      <EventDetailsModal />
       <Navbar
         activeHref="#home"
         rightSlot={

@@ -1,6 +1,8 @@
 /* Design tokens extracted from the original Kasamento mockup (design-reference/original-mockup.html).
    All new components should consume these variables rather than hardcoding colors. */
 :root {
+  color-scheme: light;
+
   /* Core palette */
   --color-ivory: #f8f7f5;
   --color-ivory-soft: #fafafa;
@@ -69,6 +71,8 @@
 }
 
 :root[data-theme="dark"] {
+  color-scheme: dark;
+
   --color-ivory: #17161a;
   --color-ivory-soft: #1e1d22;
   --color-ink: #f2f0ec;

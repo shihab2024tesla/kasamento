@@ -52,6 +52,28 @@
   box-shadow: 0 0 0 3px rgba(107, 30, 46, 0.12);
 }
 
+.input[type="date"] {
+  cursor: pointer;
+}
+
+.input[type="date"]:invalid {
+  color: var(--color-muted-soft);
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  padding: 6px;
+  margin-right: -6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast), background var(--transition-fast);
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  background: var(--color-surface-warm);
+}
+
 .adornment {
   position: absolute;
   right: var(--space-2);
