@@ -12,6 +12,14 @@
       rel="stylesheet"
     />
     <title>The Bridal Suite — Kasamento</title>
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("kasamento-theme");
+          if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

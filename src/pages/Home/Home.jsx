@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { ProductCard } from "../../components/Card";
-import { BagIcon } from "../../components/icons";
+import { BagIcon, MoonIcon, SunIcon } from "../../components/icons";
 import { Navbar } from "../../components/Navbar";
 import { Reveal } from "../../components/Reveal";
 import { useAuth } from "../../hooks/useAuth";
 import { useBag } from "../../hooks/useBag";
+import { useTheme } from "../../hooks/useTheme";
 import { useToast } from "../../hooks/useToast";
 import { formatINR } from "../../utils/currency";
 import styles from "./Home.module.css";
@@ -247,6 +248,7 @@ function FilterBar({ religion, onReligionChange, price, onPriceChange }) {
 export function Home() {
   const { user, logout } = useAuth();
   const { totalCount, addItem, openBag } = useBag();
+  const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
@@ -269,7 +271,6 @@ export function Home() {
 
   function handleAddToBag(item) {
     addItem(item);
-    showToast(`${item.name} added to your bag.`, "success");
   }
 
   return (
@@ -284,6 +285,14 @@ export function Home() {
             <button type="button" className={styles.bagButton} onClick={openBag} aria-label="Open bag">
               <BagIcon />
               {totalCount > 0 && <span className={styles.bagCount}>{totalCount}</span>}
+            </button>
+            <button
+              type="button"
+              className={styles.themeButton}
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            >
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
             </button>
             <button type="button" className={styles.logoutButton} onClick={handleLogout} disabled={loggingOut}>
               {loggingOut ? "Signing out…" : "Logout"}

@@ -22,7 +22,7 @@
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--color-ink);
+  background: var(--color-ink-fixed);
 }
 
 .secondary {
